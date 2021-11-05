@@ -1,0 +1,28 @@
+<mat-toolbar style="background-color: #2b3557; height: 70px">
+    <!-- <mat-toolbar style="background-color: #2b3557"> COLOR DE LUDYCOM -->
+    <img class="logo" src="./././assets/logo.png" />
+    <span class="titulo">LudyReport</span>
+    <mat-icon class="icono-menu" (click)="drawer.toggle()">toc</mat-icon>
+  </mat-toolbar>
+  
+  <mat-drawer-container class="container-barraLateral" autosize>
+    <mat-drawer #drawer class="barraLateral" mode="side">
+      
+      <div routerLink="/dashboard/inicio" class="menuItems">
+        <span class="material-icons"> home </span>
+        <p *ngIf="!showPhone">Inicio</p>
+      </div>
+  
+      <div routerLink="/dashboard/mapa" class="menuItems">
+        <span class="material-icons" (click)="showFiller = !showFiller"> map </span>
+        <div>
+          <p *ngIf="!showPhone">Mapa</p>
+        </div>
+      </div>
+    </mat-drawer>
+  
+    <div class="container-contenido">
+        <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+  
