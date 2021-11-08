@@ -1,0 +1,20 @@
+<div class="capturaReporte" mat-dialog-content>
+    <h1 mat-dialog-title>Reporte</h1>
+    <p>08/11/2021</p>
+    <div class="descripcionReporte" mat-dialog-content>
+        <form [formGroup]="form" >
+            <mat-form-field appearance="fill">
+                <mat-label>Código</mat-label>
+                <input matInput formControlName="codigo" readonly class="inputCodigo" [(ngModel)]="codigoPrueba">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <textarea class="inputDescripcion" matInput formControlName="descripcion"></textarea>
+              </mat-form-field>
+              <div class="contenedorBotones" mat-dialog-actions>
+                <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+                <button mat-raised-button color="primary" type="submit" (click)="enviarReporte()">Eviar</button>
+              </div>
+        </form>
+    </div>
+  </div>

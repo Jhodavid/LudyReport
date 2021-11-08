@@ -1,0 +1,46 @@
+.capturaReporte{
+    width: 250px;
+    height: 400px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.descripcionReporte{
+    width: 100%;
+    height: 80%;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.219);
+    overflow: hidden;
+}
+
+.inputCodigo{
+    width: 333px;
+    padding: 0;
+    margin: 0;
+}
+
+.inputDescripcion{
+    height: 150px;
+    padding: 0;
+    margin: 0;
+}
+
+.contenedorBotones{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    float: right;
+}
+
+h1{
+    display: flex;
+    float: left;
+    margin-left: 17px;
+}
+
+p{
+    float: right;
+}

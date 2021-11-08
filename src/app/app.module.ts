@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ModalReporteComponent } from './components/dashboard/mapa/modal-reporte/modal-reporte.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    ModalReporteComponent,
   ],
   imports: [
     BrowserModule,

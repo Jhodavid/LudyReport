@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
+
 // Material
 import { MatSliderModule } from '@angular/material/slider';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -14,6 +15,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { InicioComponent } from '../dashboard/inicio/inicio.component';
 import { MapaComponent } from '../dashboard/mapa/mapa.component';
 import {LayoutModule} from '@angular/cdk/layout';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -32,7 +37,8 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatCardModule,
     MatGridListModule,
     LayoutModule,
-
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatSliderModule,
@@ -44,7 +50,8 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatCardModule,
     MatGridListModule,
     LayoutModule,
-
+    MatDialogModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

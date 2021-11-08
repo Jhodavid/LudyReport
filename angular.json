@@ -33,7 +33,7 @@
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["./src/app/components/dashboard/mapa/mapa.component.css"]
           },
           "configurations": {
             "production": {
