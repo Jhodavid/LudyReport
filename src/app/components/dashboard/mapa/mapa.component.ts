@@ -3,6 +3,8 @@ import { ViewChild } from '@angular/core';
 import { Coordenada } from './Model/coordenada';
 import {MatDialog} from '@angular/material/dialog';
 import { ModalReporteComponent } from 'src/app/components/dashboard/mapa/modal-reporte/modal-reporte.component';
+import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 
 
@@ -14,10 +16,13 @@ import { ModalReporteComponent } from 'src/app/components/dashboard/mapa/modal-r
 export class MapaComponent implements OnInit, AfterViewInit {
 
   map: any;
-
+  fecha: string | undefined;
+  image: string;
 
   @ViewChild('mapElement') mapElement: any;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {
+    this.image = "././assets/marcador.png";
+   }
    
   ngAfterViewInit(): void {
     
@@ -33,8 +38,8 @@ export class MapaComponent implements OnInit, AfterViewInit {
         style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
         mapTypeIds: ["roadmap", "terrain"],
       },
-      streetViewControl: true,
-      fullscreenControl: true
+      streetViewControl: false,
+      fullscreenControl: false
     });
     
     google.maps.event.addListener(this.map, "click", (event: any) => {
@@ -46,18 +51,26 @@ export class MapaComponent implements OnInit, AfterViewInit {
     const marcador = new google.maps.Marker({
       position: location,
       map: map,
-      
+      icon: this.image
 
     });
-    google.maps.event.addListener(marcador, "click", () => {
-      this.openDialog();
-      console.log(marcador)
+    google.maps.event.addListener(marcador, "click", (e) => {
+      this.openDialog(e);
     })
   }
-  
-  openDialog() {
-    this.dialog.open(ModalReporteComponent, {
+
+  openDialog(e: any) {
+    this.fecha = moment().format('lll');
+
+    const modalRef = this.dialog.open(ModalReporteComponent, {
+      data: ["12345",this.fecha, ""],
     });
+    // modalRef.afterClosed().subscribe(modal => {
+    //   console.log(e);
+    //   if(modal){
+    //     console.log('aaaa');
+    //   }
+    // })
   }
 
   ngOnInit(): void {

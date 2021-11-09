@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ModalReporteComponent } from './components/dashboard/mapa/modal-reporte/modal-reporte.component';
+import { DatePipe } from '@angular/common';
+
 
 
 @NgModule({
@@ -22,7 +24,7 @@ import { ModalReporteComponent } from './components/dashboard/mapa/modal-reporte
     SharedModule,
     
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

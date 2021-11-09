@@ -1,20 +1,24 @@
 <div class="capturaReporte" mat-dialog-content>
     <h1 mat-dialog-title>Reporte</h1>
-    <p>08/11/2021</p>
     <div class="descripcionReporte" mat-dialog-content>
-        <form [formGroup]="form" >
-            <mat-form-field appearance="fill">
+        <form [formGroup]="formulario" (ngSubmit)="enviarReporte()">
+              <mat-form-field appearance="fill">
                 <mat-label>Código</mat-label>
-                <input matInput formControlName="codigo" readonly class="inputCodigo" [(ngModel)]="codigoPrueba">
+                <input matInput formControlName="codigo" readonly class="inputCodigo" placeholder="Por asignación automática" >
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Fecha del reporte</mat-label>
+                <input matInput formControlName="fechaReporte" readonly class="inputCodigo" [(ngModel)]="datosReporte.fecha">
               </mat-form-field>
               <mat-form-field appearance="fill">
                 <mat-label>Descripción</mat-label>
-                <textarea class="inputDescripcion" matInput formControlName="descripcion"></textarea>
+                <textarea class="inputDescripcion" matInput formControlName="descripcion" [(ngModel)]="datosReporte.descripcion"></textarea>
               </mat-form-field>
               <div class="contenedorBotones" mat-dialog-actions>
-                <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
-                <button mat-raised-button color="primary" type="submit" (click)="enviarReporte()">Eviar</button>
+                  <button mat-raised-button color="warn" mat-dialog-close type="button">Cancelar</button>
+                  <button mat-raised-button color="primary" type="submit" mat-dialog-close [disabled]="!formulario.valid">Eviar</button>
               </div>
+              
         </form>
     </div>
   </div>

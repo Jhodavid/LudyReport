@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-reporte',
@@ -9,21 +10,35 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ModalReporteComponent implements OnInit {
 
-  form: FormGroup;
-  codigoPrueba: number
+  formulario: FormGroup;
+  datosReporte: any;
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      codigo: ['', Validators.required],
+  constructor(private fb: FormBuilder, private router: Router,
+              public modalRef: MatDialogRef<ModalReporteComponent>,
+              @Inject(MAT_DIALOG_DATA) public datos: string
+    ) {
+    this.formulario = this.fb.group({
+      codigo: [],
+      fechaReporte: ['', Validators.required],
       descripcion: ['', Validators.required],
     })
-    this.codigoPrueba = 12345;
+    
+    this.datosReporte = {
+      codigo: datos[0],
+      fecha: datos[1],
+      descripcion: datos[2]
+    }
    }
 
   ngOnInit(): void {
   }
 
   enviarReporte(){
+    // this.router.navigate(['./dashboard/mapa']);
+    this.modalRef.beforeClosed
+    console.log(this.datos)
 
+    this.formulario.reset();
   }
+
 }
