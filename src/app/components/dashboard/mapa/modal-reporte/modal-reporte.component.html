@@ -1,10 +1,10 @@
 <div class="capturaReporte" mat-dialog-content>
     <h1 mat-dialog-title>Reporte</h1>
     <div class="descripcionReporte" mat-dialog-content>
-        <form [formGroup]="formulario" (ngSubmit)="enviarReporte()">
+        <form [formGroup]="formulario" (ngSubmit)="agregarReporte()">
               <mat-form-field appearance="fill">
                 <mat-label>Código</mat-label>
-                <input matInput formControlName="codigo" readonly class="inputCodigo" placeholder="Por asignación automática" >
+                <input matInput formControlName="codigo" readonly class="inputCodigo" placeholder="Por asignación automática" [(ngModel)]="datosReporte.codigo">
               </mat-form-field>
               <mat-form-field appearance="fill">
                 <mat-label>Fecha del reporte</mat-label>

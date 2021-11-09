@@ -51,20 +51,29 @@ export class MapaComponent implements OnInit, AfterViewInit {
     const marcador = new google.maps.Marker({
       position: location,
       map: map,
-      icon: this.image
+      icon: this.image,
+      draggable: true,
+      animation: google.maps.Animation.DROP,
 
     });
-    google.maps.event.addListener(marcador, "click", (e) => {
-      this.openDialog(e);
+
+    google.maps.event.addListener(marcador, "click", (location) => {
+      this.openDialog(location);
     })
+
+  
   }
 
-  openDialog(e: any) {
+  openDialog(location: google.maps.LatLngLiteral) {
     this.fecha = moment().format('lll');
 
     const modalRef = this.dialog.open(ModalReporteComponent, {
-      data: ["12345",this.fecha, ""],
-    });
+      data: [12345,this.fecha, "kk", {location}],
+    });  
+
+    console.log(location)
+
+
     // modalRef.afterClosed().subscribe(modal => {
     //   console.log(e);
     //   if(modal){
