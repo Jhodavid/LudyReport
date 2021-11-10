@@ -19,7 +19,7 @@ export class ModalReporteComponent implements OnInit {
               public modalRef: MatDialogRef<ModalReporteComponent>,
               private reporteService: ReportesService,
               private toastr: ToastrService,
-              @Inject(MAT_DIALOG_DATA) public datos: string
+              @Inject(MAT_DIALOG_DATA) public datos: any
     ) {
     this.formulario = this.fb.group({
       codigo: [],
@@ -40,8 +40,7 @@ export class ModalReporteComponent implements OnInit {
   }
 
   agregarReporte(){
-    // this.router.navigate(['./dashboard/mapa']);
-
+    this.router.navigate(['./dashboard/mapa']);
 
     const reporte: any = {
       codigo: this.datosReporte.codigo,
@@ -50,8 +49,6 @@ export class ModalReporteComponent implements OnInit {
       ubicacion: this.datosReporte.ubicacion
     }
     
-
-
     this.reporteService.agregarReporte(reporte).then(() => {
       this.toastr.success('El reporte fué guardado con éxito.', 'Reporte guardado',{
         positionClass: 'toast-bottom-right'

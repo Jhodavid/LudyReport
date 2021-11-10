@@ -3,6 +3,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {OnDestroy} from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import { ReportesService } from '../services/reportes.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -57,5 +58,6 @@ export class DashboardComponent implements OnDestroy {
   alargarMenu(){
     this.showFiller = true;
   }
+ 
 
 }

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {OnDestroy} from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import { ReportesService } from '../../services/reportes.service';
 
 @Component({
   selector: 'app-inicio',
@@ -10,11 +11,12 @@ import {takeUntil} from 'rxjs/operators';
   styleUrls: ['./inicio.component.css']
 })
 
-  export class InicioComponent implements OnDestroy  {
+  export class InicioComponent implements OnDestroy, OnInit  {
     
     gridColums: number | undefined;
     gridRows: string | undefined;
     alturaDescripcion: string | undefined;
+    reportes: any[] = [];
 
     destroyed = new Subject<void>();
     currentScreenSize: string | undefined;
@@ -26,7 +28,8 @@ import {takeUntil} from 'rxjs/operators';
       [Breakpoints.Large, 'Large'],
     ]);
   
-    constructor(breakpointObserver: BreakpointObserver) {
+    constructor(breakpointObserver: BreakpointObserver,
+                private reportesService: ReportesService) {
       breakpointObserver
         .observe([
           Breakpoints.XSmall,
@@ -53,7 +56,7 @@ import {takeUntil} from 'rxjs/operators';
             this.gridRows = "8:10";
           }else if(this.currentScreenSize == 'Large'){
             this.gridColums = 5;
-            this.gridRows = "6:8";
+            this.gridRows = "6:9";
           }
         });
     }
@@ -61,6 +64,23 @@ import {takeUntil} from 'rxjs/operators';
     ngOnDestroy() {
       this.destroyed.next();
       this.destroyed.complete();
+    }
+
+    ngOnInit(): void {
+      this.getReportes();
+    }
+
+    getReportes(){
+      this.reportesService.getReportes().subscribe(datos => {
+        this.reportes = [];
+        datos.forEach((reporte:any) => {
+          this.reportes.push({
+            id: reporte.payload.doc.id,
+            ...reporte.payload.doc.data()
+          })
+        });
+        console.log(this.reportes);
+      })
     }
   }
 

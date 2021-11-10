@@ -1,68 +1,25 @@
 
 <mat-grid-list cols="{{gridColums}}" rowHeight="{{gridRows}}">
+
     <mat-grid-tile>
         <mat-card class="card" fxLayoutAlign="start start">
-            <mat-card-title>Reporte # 456</mat-card-title>
-            <mat-card-content class="descripcion" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis porro laudantium facilis reiciendis in ea quo dolores. Nihil, odio. Aut eius esse dolor repellat et vero! Inventore dignissimos suscipit quae.</mat-card-content>
-            <span style="float: right;">04/11/2021</span>
-            <button mat-stroked-button color="primary">Editar</button>
+            <mat-card-title>Total reportes</mat-card-title>
+            <mat-card-content class="descripcion reportes" >{{reportes.length}}</mat-card-content>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card class="card" fxLayoutAlign="start start">
-            <mat-card-title>Reporte # 456</mat-card-title>
-            <mat-card-content class="descripcion" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis porro laudantium facilis reiciendis in ea quo dolores. Nihil, odio. Aut eius esse dolor repellat et vero! Inventore dignissimos suscipit quae.</mat-card-content>
-            <span style="float: right;">04/11/2021</span>
-            <button mat-stroked-button color="primary">Editar</button>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card class="card" fxLayoutAlign="start start">
-            <mat-card-title>Reporte # 456</mat-card-title>
-            <mat-card-content class="descripcion" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis porro laudantium facilis reiciendis in ea quo dolores. Nihil, odio. Aut eius esse dolor repellat et vero! Inventore dignissimos suscipit quae.</mat-card-content>
-            <span style="float: right;">04/11/2021</span>
-            <button mat-stroked-button color="primary">Editar</button>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card class="card" fxLayoutAlign="start start">
-            <mat-card-title>Reporte # 456</mat-card-title>
-            <mat-card-content class="descripcion" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis porro laudantium facilis reiciendis in ea quo dolores. Nihil, odio. Aut eius esse dolor repellat et vero! Inventore dignissimos suscipit quae.</mat-card-content>
-            <span style="float: right;">04/11/2021</span>
-            <button mat-stroked-button color="primary">Editar</button>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card class="card" fxLayoutAlign="start start">
-            <mat-card-title>Reporte # 456</mat-card-title>
-            <mat-card-content class="descripcion" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis porro laudantium facilis reiciendis in ea quo dolores. Nihil, odio. Aut eius esse dolor repellat et vero! Inventore dignissimos suscipit quae.</mat-card-content>
-            <span style="float: right;">04/11/2021</span>
-            <button mat-stroked-button color="primary">Editar</button>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card class="card" fxLayoutAlign="start start">
-            <mat-card-title>Reporte # 456</mat-card-title>
-            <mat-card-content class="descripcion" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis porro laudantium facilis reiciendis in ea quo dolores. Nihil, odio. Aut eius esse dolor repellat et vero! Inventore dignissimos suscipit quae.</mat-card-content>
-            <span style="float: right;">04/11/2021</span>
-            <button mat-stroked-button color="primary">Editar</button>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card class="card" fxLayoutAlign="start start">
-            <mat-card-title>Reporte # 456</mat-card-title>
-            <mat-card-content class="descripcion" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis porro laudantium facilis reiciendis in ea quo dolores. Nihil, odio. Aut eius esse dolor repellat et vero! Inventore dignissimos suscipit quae.</mat-card-content>
-            <span style="float: right;">04/11/2021</span>
-            <button mat-stroked-button color="primary">Editar</button>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card class="card" fxLayoutAlign="start start">
-            <mat-card-title>Reporte # 456</mat-card-title>
-            <mat-card-content class="descripcion" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis porro laudantium facilis reiciendis in ea quo dolores. Nihil, odio. Aut eius esse dolor repellat et vero! Inventore dignissimos suscipit quae.</mat-card-content>
-            <span style="float: right;">04/11/2021</span>
-            <button mat-stroked-button color="primary">Editar</button>
-        </mat-card>
-    </mat-grid-tile>
+
+    <table>
+        <tr *ngFor="let reporte of reportes">
+            <mat-grid-tile>
+                <mat-card class="card" fxLayoutAlign="start start">
+                    <mat-card-title>Reporte # {{reporte.codigo}}</mat-card-title>
+                    <br>
+                    <mat-card-content class="descripcion" >{{reporte.descripcion}}</mat-card-content>
+                    <span style="float: right;">{{reporte.fecha}}</span>
+                </mat-card>
+            </mat-grid-tile>
+        </tr>
+    </table>
+
   </mat-grid-list>
 

@@ -17,8 +17,8 @@ import { MapaComponent } from '../dashboard/mapa/mapa.component';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatDialogModule} from '@angular/material/dialog';
 
-
 import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -38,9 +38,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatGridListModule,
     LayoutModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   exports: [
+    CommonModule,
     MatSliderModule,
     MatToolbarModule,
     MatButtonModule,
@@ -51,7 +53,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatGridListModule,
     LayoutModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ]
 })
 export class SharedModule { }

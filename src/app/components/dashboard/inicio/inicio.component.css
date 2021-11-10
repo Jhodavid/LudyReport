@@ -1,6 +1,14 @@
 .card{
-    margin: 4px;
+    margin: 10px;
 }
+
+.reportes{
+    margin: 25%;
+    padding-top: 20px;
+    height: 80px;
+    font-size: 100px;
+}
+
 /* 
 .descripcion{
     height: 9em; */
