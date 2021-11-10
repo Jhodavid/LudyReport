@@ -75,3 +75,7 @@ mat-toolbar{
     border-radius: 0 10px;
     cursor: pointer;
 }
+
+.container-contenido{
+    background-color: rgba(16, 200, 224, 0.089);
+}

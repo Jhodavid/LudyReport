@@ -1,25 +1,29 @@
 
 <mat-grid-list cols="{{gridColums}}" rowHeight="{{gridRows}}">
 
-    <mat-grid-tile>
-        <mat-card class="card" fxLayoutAlign="start start">
-            <mat-card-title>Total reportes</mat-card-title>
-            <mat-card-content class="descripcion reportes" >{{reportes.length}}</mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-
-    <table>
-        <tr *ngFor="let reporte of reportes">
-            <mat-grid-tile>
-                <mat-card class="card" fxLayoutAlign="start start">
-                    <mat-card-title>Reporte # {{reporte.codigo}}</mat-card-title>
-                    <br>
-                    <mat-card-content class="descripcion" >{{reporte.descripcion}}</mat-card-content>
-                    <span style="float: right;">{{reporte.fecha}}</span>
-                </mat-card>
-            </mat-grid-tile>
-        </tr>
-    </table>
+    <mat-grid-tile class="reporte">
+            <mat-card class="card" fxLayoutAlign="start start">
+                <mat-card-title>Total reportes</mat-card-title>
+                <mat-card-content>
+                    <div class="reportes">
+                        {{reportes.length}}
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    
+        <table>
+            <tr *ngFor="let reporte of reportes">
+                <mat-grid-tile>
+                    <mat-card class="card scroll" fxLayoutAlign="start start">
+                        <p style="display: inline-block; text-align: right;">{{formatearFecha(reporte.fecha.seconds)}}</p>
+                        <mat-card-title>Reporte # {{reporte.codigo}}</mat-card-title>
+                        <br>
+                        <mat-card-content class="descripcion" >{{reporte.descripcion}}</mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+            </tr>
+        </table>
 
   </mat-grid-list>
 

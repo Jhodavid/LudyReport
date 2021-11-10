@@ -20,7 +20,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-
 @NgModule({
   declarations: [
     InicioComponent,
@@ -39,7 +38,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     LayoutModule,
     MatDialogModule,
     ReactiveFormsModule,
-
   ],
   exports: [
     CommonModule,
@@ -54,7 +52,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     LayoutModule,
     MatDialogModule,
     ReactiveFormsModule,
-
   ]
 })
 export class SharedModule { }

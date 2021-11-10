@@ -4,6 +4,7 @@ import {OnDestroy} from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import { ReportesService } from '../../services/reportes.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-inicio',
@@ -17,6 +18,7 @@ import { ReportesService } from '../../services/reportes.service';
     gridRows: string | undefined;
     alturaDescripcion: string | undefined;
     reportes: any[] = [];
+    dateString: any;
 
     destroyed = new Subject<void>();
     currentScreenSize: string | undefined;
@@ -56,7 +58,7 @@ import { ReportesService } from '../../services/reportes.service';
             this.gridRows = "8:10";
           }else if(this.currentScreenSize == 'Large'){
             this.gridColums = 5;
-            this.gridRows = "6:9";
+            this.gridRows = "5:5";
           }
         });
     }
@@ -79,9 +81,13 @@ import { ReportesService } from '../../services/reportes.service';
             ...reporte.payload.doc.data()
           })
         });
-        console.log(this.reportes);
       })
     }
+
+    formatearFecha(fecha: any){
+        return moment(fecha*1000).format('L - '+'LT');
+    }
+
   }
 
 

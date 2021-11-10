@@ -14,6 +14,6 @@ export class ReportesService {
   }
 
   getReportes(): Observable<any>{
-    return this.firestore.collection('Reportes').snapshotChanges();
+    return this.firestore.collection('Reportes', ref => ref.orderBy('fecha','asc')).snapshotChanges();
   }
 }
