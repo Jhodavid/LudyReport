@@ -4,21 +4,23 @@
         <form [formGroup]="formulario" (ngSubmit)="agregarReporte()">
               <mat-form-field appearance="fill">
                 <mat-label>Código</mat-label>
-                <input matInput formControlName="codigo" readonly class="inputCodigo" placeholder="Por asignación automática" [(ngModel)]="datosReporte.codigo">
+                <input matInput formControlName="codigo" readonly class="inputCodigo" placeholder="Por asignación automática" [(ngModel)]="datosReporte.id">
               </mat-form-field>
               <mat-form-field appearance="fill">
                 <mat-label>Fecha del reporte</mat-label>
-                <input matInput formControlName="fechaReporte" readonly class="inputCodigo" [(ngModel)]="datosReporte.fecha">
+                <input matInput formControlName="fechaReporte" readonly class="inputCodigo" [(ngModel)]="fechaFormulario">
               </mat-form-field>
               <mat-form-field appearance="fill">
                 <mat-label>Descripción</mat-label>
                 <textarea class="inputDescripcion" matInput formControlName="descripcion" [(ngModel)]="datosReporte.descripcion"></textarea>
               </mat-form-field>
+
               <div class="contenedorBotones" mat-dialog-actions>
                   <button mat-raised-button color="warn" mat-dialog-close type="button">Cancelar</button>
-                  <button mat-raised-button color="primary" type="submit" mat-dialog-close [disabled]="!formulario.valid">Eviar</button>
+                  <button *ngIf="!existeReporte" mat-raised-button color="primary" type="submit" mat-dialog-close [disabled]="!formulario.valid">Eviar</button>
+                  <button *ngIf="existeReporte" mat-raised-button color="warn" mat-dialog-close type="button" (click)="eliminarReporte(datosReporte.id)">Eliminar</button>
+                  <button *ngIf="existeReporte" mat-raised-button color="primary" type="button" mat-dialog-close (click)="editarReporte(datosReporte.id)">Editar</button>
               </div>
-              
         </form>
     </div>
   </div>

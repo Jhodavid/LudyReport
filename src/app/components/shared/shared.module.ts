@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
-
 // Material
 import { MatSliderModule } from '@angular/material/slider';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -38,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LayoutModule,
     MatDialogModule,
     ReactiveFormsModule,
+    
   ],
   exports: [
     CommonModule,

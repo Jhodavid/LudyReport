@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ModalReporteComponent } from 'src/app/components/dashboard/mapa/modal-reporte/modal-reporte.component';
 import * as moment from 'moment';
 import { ReportesService } from '../../services/reportes.service';
+import { FechaService } from '../../services/fecha.service';
 
 
 @Component({
@@ -14,13 +15,14 @@ import { ReportesService } from '../../services/reportes.service';
 export class MapaComponent implements OnInit, AfterViewInit {
 
   map: any;
-  fecha: string | undefined;
   image: string;
   reportes: any[] = [];
+  marcadores: any[] = [];
 
   @ViewChild('mapElement') mapElement: any;
   constructor(public dialog: MatDialog,
-              private reportesService: ReportesService) {
+              private reportesService: ReportesService,
+              private fecha: FechaService) {
     this.image = "././assets/marcador.png";
    }
    
@@ -45,15 +47,13 @@ export class MapaComponent implements OnInit, AfterViewInit {
     google.maps.event.addListener(this.map, "click", (event: any) => {
       this.crearMarcador(event.latLng, this.map);
     });
-
-
   }
   
   crearMarcador(location: google.maps.LatLngLiteral, map: google.maps.Map) {
     const marcador = new google.maps.Marker({
       position: location,
       map: map,
-      icon: this.image,
+      icon: "././assets/marcadorRojo.png",
       animation: google.maps.Animation.DROP,
     });
 
@@ -66,41 +66,40 @@ export class MapaComponent implements OnInit, AfterViewInit {
     }
 
     google.maps.event.addListener(marcador, "click", () => {
-
-      this.fecha = moment().format('lll');
-      const fechaActual = (new Date(this.fecha));
-
-      this.openDialog( "",fechaActual ,"" ,ubicacion);
+    
+      const fecha = moment().format('lll');
+      const fechaActual = Date.parse(fecha);
+      this.openDialog("", "",fechaActual ,"" ,ubicacion, marcador);
     })
   }
 
   // METODOS
 
-  openDialog(codigo: any, fecha: Date, descripcion: string | undefined, ubicacion: {}) {
-    
+  openDialog(id: any, codigo: any, fecha: any, descripcion: string | undefined, ubicacion: {}, marcador:any) {
+
     const modalRef = this.dialog.open(ModalReporteComponent, {
-      data: [codigo,fecha, descripcion, ubicacion],
+      data: [id,codigo,fecha, descripcion, ubicacion],
     });  
   }
   
-  generarMarcadores(codigo: number, fecha: Date, descripcion: string , ubicacion: any){
+  generarMarcadores(id: any, codigo: number, fecha: number, descripcion: string , ubicacion: any){
 
     const posicionMarcador = { lat: parseFloat(ubicacion.lat), lng: parseFloat(ubicacion.lng)}
 
     const marcador = new google.maps.Marker({
       position: posicionMarcador,
       map: this.map,
-      icon: this.image,
+      icon: "././assets/marcador.png",
       draggable: true,
       animation: google.maps.Animation.DROP,
     });
-    
+
+    this.marcadores.push(marcador);
+
     google.maps.event.addListener(marcador, "click", () => {
 
-      this.fecha = moment().format('lll');
-      const fechaActual = (new Date(this.fecha));
 
-      this.openDialog( codigo,fecha ,descripcion ,ubicacion);
+      this.openDialog(id, codigo, fecha ,descripcion ,ubicacion, marcador);
     })
   }
   
@@ -115,8 +114,14 @@ export class MapaComponent implements OnInit, AfterViewInit {
       });
 
     this.reportes.forEach(reporte => {
-      this.generarMarcadores(reporte.codigo, reporte.fecha, reporte.descripcion, reporte.ubicacion);
+      this.generarMarcadores(reporte.id, reporte.codigo, reporte.fecha, reporte.descripcion, reporte.ubicacion);
     })
+    })
+  }
+
+  eliminarMarcador(){
+    this.marcadores.forEach((marcador:any) => {
+        marcador.setMap(null);
     })
   }
 

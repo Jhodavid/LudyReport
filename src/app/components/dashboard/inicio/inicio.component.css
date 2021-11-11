@@ -9,12 +9,16 @@ mat-card-title{
 
 .reportes{
     text-align: center;
-    margin: 10% 8% 5% 8%;
-    padding: 80px 30px 0px 30px;
-    height: 120px;
+    margin: 10% 8% 0 8%;
+    padding: 60px 30px 0px 30px;
+    height: 80px;
     font-size: 100px;
     background-color: rgba(243, 243, 19, 0.582);
     border-radius: 50px;
+}
+
+.titulo{
+    margin: 0;
 }
 
   .scroll{
@@ -28,6 +32,8 @@ mat-card-title{
       min-width: 90%;
       min-height: 90%;
   }
+
+ 
 
 /* 
 .descripcion{

@@ -16,4 +16,13 @@ export class ReportesService {
   getReportes(): Observable<any>{
     return this.firestore.collection('Reportes', ref => ref.orderBy('fecha','asc')).snapshotChanges();
   }
+
+  eliminarReporte(id: string): Promise<any> {
+    return this.firestore.collection('Reportes').doc(id).delete();
+  }
+
+  actualizarReporte(id: string, data:any): Promise<any>{
+    return this.firestore.collection('Reportes').doc(id).update(data);
+  }
+  
 }

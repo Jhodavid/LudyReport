@@ -4,7 +4,7 @@ import {OnDestroy} from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import { ReportesService } from '../../services/reportes.service';
-import * as moment from 'moment';
+import { FechaService } from '../../services/fecha.service';
 
 @Component({
   selector: 'app-inicio',
@@ -31,7 +31,8 @@ import * as moment from 'moment';
     ]);
   
     constructor(breakpointObserver: BreakpointObserver,
-                private reportesService: ReportesService) {
+                private reportesService: ReportesService,
+                private fechaService: FechaService) {
       breakpointObserver
         .observe([
           Breakpoints.XSmall,
@@ -70,6 +71,7 @@ import * as moment from 'moment';
 
     ngOnInit(): void {
       this.getReportes();
+      // this.registrarReportes(this.reportes);
     }
 
     getReportes(){
@@ -80,14 +82,14 @@ import * as moment from 'moment';
             id: reporte.payload.doc.id,
             ...reporte.payload.doc.data()
           })
+          console.log(reporte.fecha);
         });
       })
     }
 
-    formatearFecha(fecha: any){
-        return moment(fecha*1000).format('L - '+'LT');
+    formatearFecha(fecha: string){
+      return this.fechaService.formatearFecha(fecha);
     }
-
   }
 
 

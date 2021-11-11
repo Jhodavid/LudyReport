@@ -16,9 +16,9 @@
             <tr *ngFor="let reporte of reportes">
                 <mat-grid-tile>
                     <mat-card class="card scroll" fxLayoutAlign="start start">
-                        <p style="display: inline-block; text-align: right;">{{formatearFecha(reporte.fecha.seconds)}}</p>
-                        <mat-card-title>Reporte # {{reporte.codigo}}</mat-card-title>
-                        <br>
+                        <p style="display: inline-block; text-align: right;">{{formatearFecha(reporte.fecha)}}</p>
+                        <mat-card-title class="titulo">Reporte</mat-card-title>
+                        <h3># {{reporte.id}}</h3>
                         <mat-card-content class="descripcion" >{{reporte.descripcion}}</mat-card-content>
                     </mat-card>
                 </mat-grid-tile>
