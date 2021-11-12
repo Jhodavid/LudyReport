@@ -82,7 +82,6 @@ import { FechaService } from '../../services/fecha.service';
             id: reporte.payload.doc.id,
             ...reporte.payload.doc.data()
           })
-          console.log(reporte.fecha);
         });
       })
     }

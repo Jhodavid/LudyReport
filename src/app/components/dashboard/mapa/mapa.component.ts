@@ -84,8 +84,6 @@ export class MapaComponent implements OnInit, AfterViewInit {
   }
   
   generarMarcadores(id: any, codigo: number, fecha: number, descripcion: string , ubicacion: any){
-    console.log(this.contadorMarcadores+"contador marcadores")
-    console.log(this.marcadores.length+"array marcadores")
 
     const posicionMarcador = { lat: parseFloat(ubicacion.lat), lng: parseFloat(ubicacion.lng)}
 
