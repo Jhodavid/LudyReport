@@ -18,12 +18,14 @@ export class MapaComponent implements OnInit, AfterViewInit {
   image: string;
   reportes: any[] = [];
   marcadores: any[] = [];
+  contadorMarcadores: number;
 
   @ViewChild('mapElement') mapElement: any;
   constructor(public dialog: MatDialog,
               private reportesService: ReportesService,
               private fecha: FechaService) {
     this.image = "././assets/marcador.png";
+    this.contadorMarcadores = 0;
    }
    
   ngAfterViewInit(): void {
@@ -66,15 +68,14 @@ export class MapaComponent implements OnInit, AfterViewInit {
     }
 
     google.maps.event.addListener(marcador, "click", () => {
-    
       const fecha = moment().format('lll');
       const fechaActual = Date.parse(fecha);
       this.openDialog("", "",fechaActual ,"" ,ubicacion, marcador);
+      marcador.setMap(null);
     })
   }
 
   // METODOS
-
   openDialog(id: any, codigo: any, fecha: any, descripcion: string | undefined, ubicacion: {}, marcador:any) {
 
     const modalRef = this.dialog.open(ModalReporteComponent, {
@@ -83,6 +84,8 @@ export class MapaComponent implements OnInit, AfterViewInit {
   }
   
   generarMarcadores(id: any, codigo: number, fecha: number, descripcion: string , ubicacion: any){
+    console.log(this.contadorMarcadores+"contador marcadores")
+    console.log(this.marcadores.length+"array marcadores")
 
     const posicionMarcador = { lat: parseFloat(ubicacion.lat), lng: parseFloat(ubicacion.lng)}
 
@@ -90,20 +93,18 @@ export class MapaComponent implements OnInit, AfterViewInit {
       position: posicionMarcador,
       map: this.map,
       icon: "././assets/marcador.png",
-      draggable: true,
       animation: google.maps.Animation.DROP,
     });
 
     this.marcadores.push(marcador);
 
     google.maps.event.addListener(marcador, "click", () => {
-
-
       this.openDialog(id, codigo, fecha ,descripcion ,ubicacion, marcador);
     })
   }
   
   getReportes(){
+
     this.reportesService.getReportes().subscribe(datos => {
       this.reportes = [];
       datos.forEach((reporte:any) => {
@@ -111,15 +112,18 @@ export class MapaComponent implements OnInit, AfterViewInit {
           id: reporte.payload.doc.id,
           ...reporte.payload.doc.data()
         })
+        this.contadorMarcadores++;
       });
+      this.eliminarMarcadores();
 
     this.reportes.forEach(reporte => {
       this.generarMarcadores(reporte.id, reporte.codigo, reporte.fecha, reporte.descripcion, reporte.ubicacion);
     })
+
     })
   }
 
-  eliminarMarcador(){
+  eliminarMarcadores(){
     this.marcadores.forEach((marcador:any) => {
         marcador.setMap(null);
     })
@@ -128,6 +132,5 @@ export class MapaComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getReportes();
   }
-
 }
 
