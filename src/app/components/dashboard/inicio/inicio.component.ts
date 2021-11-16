@@ -5,6 +5,7 @@ import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import { ReportesService } from '../../services/reportes.service';
 import { FechaService } from '../../services/fecha.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inicio',
@@ -32,7 +33,8 @@ import { FechaService } from '../../services/fecha.service';
   
     constructor(breakpointObserver: BreakpointObserver,
                 private reportesService: ReportesService,
-                private fechaService: FechaService) {
+                private fechaService: FechaService,
+                private toastr: ToastrService) {
       breakpointObserver
         .observe([
           Breakpoints.XSmall,
@@ -82,12 +84,21 @@ import { FechaService } from '../../services/fecha.service';
             id: reporte.payload.doc.id,
             ...reporte.payload.doc.data()
           })
+          // reporte.codigo = reporte.id;
+          // console.log(reporte.codigo," ",reporte.id)
         });
       })
     }
 
     formatearFecha(fecha: string){
       return this.fechaService.formatearFecha(fecha);
+    }
+
+    reportesConsola(){
+      console.log(this.reportes);
+      this.toastr.info('Todos los reportes fueron escritos en consola.','Reportes en consola',{
+        positionClass: 'toast-bottom-right'
+      })
     }
   }
 

@@ -15,6 +15,7 @@ mat-card-title{
     font-size: 100px;
     background-color: rgba(243, 243, 19, 0.582);
     border-radius: 50px;
+    cursor: pointer;
 }
 
 .titulo{

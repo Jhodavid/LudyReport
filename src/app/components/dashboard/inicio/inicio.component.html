@@ -5,9 +5,10 @@
             <mat-card class="card" fxLayoutAlign="start start">
                 <mat-card-title>Total reportes</mat-card-title>
                 <mat-card-content>
-                    <div class="reportes">
+                    <div (click)="reportesConsola()" class="reportes">
                         {{reportes.length}}
                     </div>
+                    <h4>Click en el número de reportes para verlos en consola.</h4>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>

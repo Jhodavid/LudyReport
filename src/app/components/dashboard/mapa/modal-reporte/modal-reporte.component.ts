@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { FechaService } from 'src/app/components/services/fecha.service';
 import { ReportesService } from 'src/app/components/services/reportes.service';
@@ -54,7 +53,6 @@ export class ModalReporteComponent implements OnInit {
     // this.router.navigate(['./dashboard/mapa']);
     
     const reporte: any = {
-      codigo: this.datosReporte.codigo,
       fecha: this.datosReporte.fecha,
       descripcion: this.formulario.value.descripcion,
       ubicacion: this.datosReporte.ubicacion
@@ -83,12 +81,10 @@ export class ModalReporteComponent implements OnInit {
     }).catch(error => {
       console.log(error);
     })  
-    // this.mapaComponent.eliminarMarcador();
   }
 
   editarReporte(id: string){
     const reporte: any = {
-      codigo: "",
       descripcion: this.formulario.value.descripcion,
       fecha: this.datosReporte.fecha,
     }
@@ -107,6 +103,5 @@ export class ModalReporteComponent implements OnInit {
       this.existeReporte = true;
     }
   }
-
-  }
+}
 

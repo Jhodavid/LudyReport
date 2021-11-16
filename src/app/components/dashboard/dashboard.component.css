@@ -79,3 +79,8 @@ mat-toolbar{
 .container-contenido{
     background-color: rgba(16, 200, 224, 0.089);
 }
+
+.divLogo{
+    display: flex;
+    align-items: center;
+}
